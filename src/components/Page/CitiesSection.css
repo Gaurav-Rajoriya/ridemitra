@@ -1,0 +1,346 @@
+/* ============================================================
+   CitiesSection.css
+   City grid with hover overlay + branding banner at bottom
+   ============================================================ */
+
+/* ── Animations ─────────────────────────────────────────── */
+@keyframes carDrive {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes wheelSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* @keyframes flagWave {
+  0%, 100% { skewX(0deg); }
+  50%       { transform: skewX(-8deg); }
+} */
+
+/* ── Section ─────────────────────────────────────────────── */
+.cities-section {
+  background: #ffffff;
+}
+
+/* .cities-inner {
+  max-width: 960px;
+  margin: 0 auto;
+} */
+
+/* ── Heading ─────────────────────────────────────────────── */
+.cities-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.cities-heading-line {
+  flex: 1;
+  height: 1.5px;
+  max-width: 60px;
+}
+
+.cities-heading-line--left  { background: linear-gradient(to right, transparent, #408A71); }
+.cities-heading-line--right { background: linear-gradient(to left,  transparent, #408A71); }
+
+.cities-heading-text {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f4c35;
+  white-space: nowrap;
+}
+
+.cities-heading-text span { color: #408A71; }
+
+/* ── Cities Grid ─────────────────────────────────────────── */
+.cities-grid {
+   max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* ── City Card ───────────────────────────────────────────── */
+.city-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4 / 4;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.city-card:hover {
+  box-shadow: 0 12px 40px rgba(64, 138, 113, 0.30);
+  transform: translateY(-4px);
+}
+
+.city-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.city-card:hover .city-card__img { transform: scale(1.07); }
+
+/* Overlay slides up from bottom on hover */
+.city-card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  transform: translateY(100%);
+  opacity: 0;
+  background: linear-gradient(
+    to top,
+    rgba(15, 76, 53, 0.92) 0%,
+    rgba(64, 138, 113, 0.75) 60%,
+    transparent 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 14px;
+  transition: transform 0.38s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.38s ease;
+}
+
+.city-card:hover .city-card__overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.city-card__name {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ════════════════════════════════════════════════════════════
+   BRANDING BANNER
+   ════════════════════════════════════════════════════════════ */
+.brand-banner {
+  background: linear-gradient(0deg, rgb(32 57 54) 0%, rgb(43 99 80) 54%);
+  padding: 36px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  box-shadow: 0 8px 40px rgba(64, 138, 113, 0.25);
+}
+
+/* Subtle background circles */
+.brand-banner::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  top: -100px;
+  left: -80px;
+  pointer-events: none;
+}
+
+.brand-banner::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  bottom: -80px;
+  right: 160px;
+  pointer-events: none;
+}
+
+/* ── Left side ───────────────────────────────────────────── */
+.brand-banner__left {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+/* Decorative dots */
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+}
+
+.brand-dot--tl { top: -16px;  left: 0; }
+.brand-dot--tr { top: -8px;   right: -8px; }
+
+/* Headline */
+.brand-headline {
+  position: relative;
+  color: white;
+  font-size: clamp(30px, 6vw, 10rem);
+  font-weight: 600;
+  line-height: 1;
+  margin: 0 0 18px;
+  letter-spacing: -0.3px;
+}
+
+/* Underline highlight on the "m" */
+.brand-highlight {
+  display: inline-block;
+  position: relative;
+  border-radius: 10px;
+  color: #196d4d;
+  background: white;
+  padding: 0 5px;
+}
+
+
+
+/* Inline bullet dot after "Cars" */
+.brand-dot-inline {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background:#408A71;
+  margin-left: 6px;
+  vertical-align: middle;
+  margin-bottom: 3px;
+}
+
+.brand-dot-inline::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  top: -7px;
+  right: 0px;
+}
+
+/* CTA button */
+.brand-cta {
+  position: absolute;
+  left: 30%;
+  bottom: 12%;
+  background:white;
+  color: #408A71;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+  padding: 6px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, border-color 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.brand-cta:hover {
+  background:#408A71;
+  border-color: #18362c;
+  color: white;
+}
+
+/* ── Right side ──────────────────────────────────────────── */
+.brand-banner__right {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  margin-left: 32px;
+}
+
+.brand-phone{
+  width: 250px;
+  height: 350px;
+  animation: carDrive 3s ease-in-out infinite;
+}
+
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .cities-grid {
+    padding:20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .cities-heading-text {
+    font-size: 18px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .brand-banner {
+    padding: 28px 24px;
+    flex-direction: column;
+    gap: 60px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .brand-banner__right {
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .brand-dot--tl { display: none; }
+
+  .brand-headline {
+    font-size: 26px;
+  }
+
+  .brand-dot-inline{
+    width: 20px;
+    height: 20px;
+  }
+
+  .brand-highlight{
+    padding: 0 3px;
+    border-radius: 5px;
+  }
+
+  .brand-dot-inline::after{
+    width: 20px;
+    height: 20px;
+  }
+
+  .brand-cta{
+    bottom: unset;
+    left: 30%;
+  }
+
+  .brand-phone{
+  width: 170px;
+  height: 250px;
+  }
+}
+
+@media (max-width: 420px) {
+  .cities-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .city-card__name { font-size: 14px; }
+}

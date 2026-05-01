@@ -1,0 +1,231 @@
+
+.fs-section {
+  padding: 52px 20px 48px;
+  background: #ffffff;
+}
+
+.fs-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   STATS ROW
+   ════════════════════════════════════════════════════════════ */
+.fs-stats {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+}
+
+.fs-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fs-stat__value {
+  font-size: 30px;
+  font-weight: 800;
+  color: #408A71;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.fs-stat__label {
+  font-size: 13px;
+  color: #408A71;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* ════════════════════════════════════════════════════════════
+   CATEGORY CARDS GRID
+   grid-template-columns: first col narrower, rest equal square
+   ════════════════════════════════════════════════════════════ */
+.fs-cards {
+  display: grid;
+  /* first card narrower, other 3 equal */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* make all rows same height so 3 green cards are square-ish */
+  grid-auto-rows: 140px;
+  gap: 14px;
+  width: 70%;
+  align-items: stretch;
+}
+
+/* ── Base card ─────────────────────────────────────────────*/
+.fs-card {
+  background: linear-gradient(322deg, rgb(0 0 0) 0%, rgb(71 144 119) 54%);
+  box-shadow: 0 4px 20px rgba(26, 92, 66, 0.22);
+  position: relative;
+  border-radius: 10px;
+  padding: 16px 16px 18px;
+  display: flex;
+  align-items: center; 
+  cursor: pointer;
+  overflow: hidden;
+  color: white;
+  border: none;
+  outline: none;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.fs-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ── First card: white/outline, shorter via self-align ────── */
+.fs-card--white {
+  /* make it shorter than the green cards */
+  align-self: end;          /* stick to bottom of grid row */
+  height: 90px;             /* fixed shorter height */
+}
+
+.fs-card--white:hover {
+  box-shadow: 0 8px 28px rgba(64, 138, 113, 0.15);
+}
+
+
+
+.fs-card--green:hover {
+  box-shadow: 0 12px 36px rgba(26, 92, 66, 0.38);
+}
+
+/* Subtle inner sheen on green cards */
+.fs-card--green::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(255,255,255,0.07) 0%, transparent 55%);
+  pointer-events: none;
+  border-radius: 16px;
+}
+
+/* ── Remix check icon badge — top left ─────────────────────*/
+.fs-card__check {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 12px;
+  color: rgb(255, 255, 255);
+  line-height: 1;
+  z-index: 2;
+}
+
+.fs-card__check i {
+  display: block;
+}
+
+/* ── Card title ────────────────────────────────────────────*/
+.fs-card__title {
+  font-size: 25px;
+  font-weight: 700;
+  line-height:0.9;
+  letter-spacing: 0.1px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ════════════════════════════════════════════════════════════
+   BOTTOM CTA
+   ════════════════════════════════════════════════════════════ */
+.fs-cta {
+  text-align: center;
+  padding: 4px 0 8px;
+}
+
+.fs-cta__text {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 600;
+  color: #408A71;
+  line-height: 1.2;
+}
+
+.fs-cta__sub {
+  font-size: 30px;
+  font-weight: 600;
+  color: #408A71;
+  display: inline;
+  letter-spacing: 0.3px;
+}
+
+.fs-cta__price {
+  display: inline-flex;
+  align-items: center;
+  background: #408A71;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 800;
+  padding: 6px 20px;
+  border-radius: 8px;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+  margin-left: 4px;
+  line-height: 1.4;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  .fs-section {
+  padding: 20px ;
+}
+  .fs-stats {
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .fs-stat{
+    text-align: center;
+  }
+
+  .fs-stat__value { font-size: 22px; }
+
+  .fs-cards {
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 100px;
+    gap: 12px;
+  }
+
+  .fs-card__title {
+    font-size: 13px;
+  }
+
+  /* on mobile first card not shorter — looks odd in 2-col grid */
+  .fs-card--white {
+    height: auto;
+    align-self: stretch;
+    min-height: 90px;
+  }
+
+  .fs-cta__text,
+  .fs-cta__sub { font-size: 20px; }
+
+  .fs-cta__price { font-size: 20px; }
+}
+
+@media (max-width: 420px) {
+  .fs-stat__value { font-size: 19px; }
+  .fs-stat__label{font-size: 8px;}
+
+  .fs-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+    .fs-cta__price{
+      padding: 5px 10px;
+      font-size: 10px;
+    }
+
+  .fs-cta__text,
+  .fs-cta__sub { font-size: 12px; }
+
+}
