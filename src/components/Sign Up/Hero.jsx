@@ -294,7 +294,7 @@ export default function Hero({ onSearch }) {
 
         {/* Car + badges */}
         <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", width: "100%", zIndex: 1 }}>
-          <div style={{ position: "relative", width: "290px", height: "340px" }}>
+          <div style={{ position: "relative", width: "290px", height: "360px" }}>
             <img
               src={car} alt="car"
               style={{ width: "310px", objectFit: "contain", marginBottom: "-20px" }}
