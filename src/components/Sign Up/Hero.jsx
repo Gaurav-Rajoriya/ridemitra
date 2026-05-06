@@ -4,7 +4,7 @@
 
 import { useState, useEffect } from "react";
 import car from "../../assets/herocar.png";
-import { fetchHeroSettings } from "../../api"; 
+import { fetchHeroSettings } from "../../api";
 
 const cars = [
   "Swift Dzire", "Honda City", "Hyundai Creta",
@@ -19,8 +19,8 @@ export default function Hero({ onSearch }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const [heroSettings, setHeroSettings] = useState({
-    hero_price:    "₹99/hr",
-    hero_tagline:  "Drive Your Freedom",
+    hero_price: "₹99/hr",
+    hero_tagline: "Drive Your Freedom",
     hero_subtitle: "Book Self-Drive Car Rentals Across India",
   });
 
@@ -115,23 +115,51 @@ export default function Hero({ onSearch }) {
             Book Self-Drive Car Rentals Across India
           </p>
 
-          {[
-            { key: "location", placeholder: "Location", type: "text" },
-            { key: "tripStart", placeholder: "Trip Start", type: "date" },
-            { key: "tripEnd", placeholder: "Trip End", type: "date" },
-          ].map(f => (
-            <input
-              key={f.key} type={f.type} placeholder={f.placeholder}
-              value={form[f.key]}
-              onChange={e => setForm({ ...form, [f.key]: e.target.value })}
-              style={{
-                width: "100%", padding: "9px 11px",
-                border: "1.5px solid #d1fae5", borderRadius: "8px",
-                marginBottom: "8px", fontSize: "13px",
-                fontFamily: "inherit", outline: "none",
-                boxSizing: "border-box", color: "#1f2937",
-              }} />
-          ))}
+         {[
+  { key: "location", placeholder: "Location", type: "text" },
+  { key: "tripStart", placeholder: "Trip Start", type: "date" },
+  { key: "tripEnd", placeholder: "Trip End", type: "date" },
+].map(f => (
+  <div key={f.key} style={{ position: "relative", marginBottom: "8px" }}>
+    
+    {(f.key === "tripStart" || f.key === "tripEnd") && !form[f.key] && (
+      <span
+        style={{
+          position: "absolute",
+          left: "11px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          color: "#6b7280",
+          fontSize: "13px",
+          pointerEvents: "none",
+          zIndex: 1,
+        }}
+      >
+        {f.placeholder}
+      </span>
+    )}
+
+    <input
+      type={f.type}
+      value={form[f.key]}
+      onChange={(e) =>
+        setForm({ ...form, [f.key]: e.target.value })
+      }
+      style={{
+        width: "100%",
+        padding: "9px 11px",
+        border: "1.5px solid #d1fae5",
+        borderRadius: "8px",
+        fontSize: "13px",
+        fontFamily: "inherit",
+        outline: "none",
+        boxSizing: "border-box",
+        color: "#1f2937",
+        background: "#fff",
+      }}
+    />
+  </div>
+))}
 
           <div style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
             <select value={form.car} onChange={e => setForm({ ...form, car: e.target.value })}
@@ -252,15 +280,25 @@ export default function Hero({ onSearch }) {
   return (
     <>
       <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to   { opacity: 1; }
-        }
-        @keyframes popIn {
-          from { opacity: 0; transform: translate(-50%, -46%) scale(0.92); }
-          to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        }
-      `}</style>
+  input::placeholder {
+    color: #6b7280;
+    opacity: 1;
+  }
+
+  input::-webkit-input-placeholder {
+    color: #6b7280;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: translate(-50%, -46%) scale(0.92); }
+    to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
+`}</style>
 
       <section style={{
         background: "linear-gradient(0deg,rgb(32 57 54) 0%, rgba(64, 138, 113, 1) 54%)",
@@ -280,7 +318,7 @@ export default function Hero({ onSearch }) {
         {/* Tagline */}
         <div style={{ textAlign: "center", marginBottom: "16px", zIndex: 1 }}>
           <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "11px", letterSpacing: "3px", textTransform: "uppercase", margin: "0 0 4px" }}>
-          {heroSettings.hero_tagline}
+            {heroSettings.hero_tagline}
           </p>
           <h1 style={{ color: "#f5f0e8", fontSize: "40px", fontWeight: "700", margin: "0 0 10px", letterSpacing: "1px" }}>
             Anytime

@@ -13,7 +13,7 @@ import FeaturesSection from "./components/Page/features/FeaturesSection ";
 import Banner from "./components/Page/Banner";
 
 // ── WhatsApp number (edit this!) ──────────────────────────────
-const WHATSAPP_NUMBER = "8400002841"; // Format: country code + number
+const WHATSAPP_NUMBER = "+918400002841"; // Format: country code + number
 
 export default function App() {
 
@@ -26,7 +26,6 @@ export default function App() {
       <Hero  />
       {/* ── PART 3: Cars ── */}
       <Cars />
-
       <CitiesSection/>
       <FeaturesSection/>
       <Banner/>
