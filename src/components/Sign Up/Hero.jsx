@@ -190,7 +190,7 @@ function BookingForm({ form, setForm, onSubmit, compact = false }) {
           marginTop:     "2px",
         }}
       >
-        SEARCH → WhatsApp
+         Submit
       </button>
     </div>
   );
