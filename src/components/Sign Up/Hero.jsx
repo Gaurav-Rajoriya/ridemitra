@@ -369,9 +369,9 @@ export default function Hero({ onSearch }) {
           </div>
 
           {/* ── Car image + badges ── */}
-          <div style={{ flex: 1, minWidth: "300px", display: "flex", justifyContent: "center", marginBottom: "-40px" }}>
+          <div style={{ flex: 1, minWidth: "300px", display: "flex", justifyContent: "center", marginBottom: "-60px" }}>
             <div style={{ position: "relative", width: "350px", height: "550px" }}>
-              <img src={car} alt="car" style={{ width: "380px", objectFit: "contain", marginBottom: "-40px" }} />
+              <img src={car} alt="car" style={{ width: "380px", objectFit: "contain", marginBottom: "-60px" }} />
 
               {/* "Starting Pricing" badge */}
               <div style={{
