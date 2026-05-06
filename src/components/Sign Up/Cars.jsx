@@ -105,7 +105,7 @@ function CarCard({ car, onBook }) {
       <div className="car-card">
         <img
           className="car-card__img"
-          src={car.img }  
+          src={car.img}
           alt={car.name}
           draggable={false}
         />
@@ -142,6 +142,39 @@ const FInput = ({ label, value, onChange, placeholder, type = "text" }) => (
       value={value}
       onChange={e => onChange(e.target.value)}
     />
+  </div>
+);
+
+
+// ✅ NEW: DateInput — date fields ke liye visible placeholder overlay
+const DateInput = ({ label, value, onChange }) => (
+  <div className="form-field">
+    <label className="form-label">{label}</label>
+    <div style={{ position: "relative" }}>
+      {/* Visible placeholder jab koi value nahi */}
+      {!value && (
+        <span style={{
+          position: "absolute",
+          left: "12px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          color: "#9ca3af",
+          fontSize: "13px",
+          pointerEvents: "none",
+          zIndex: 1,
+          userSelect: "none",
+        }}>
+          DD/MM/YYYY
+        </span>
+      )}
+      <input
+        className="form-input"
+        type="date"
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        style={{ color: value ? undefined : "transparent" }}
+      />
+    </div>
   </div>
 );
 
@@ -238,7 +271,11 @@ function BookingModal({ car, cars, onClose }) {
                 <FInput label="Drop Location" value={g.drop} onChange={v => setG({ ...g, drop: v })} placeholder="CP, Delhi" />
               </FRow>
               <FRow>
-                <FInput label="Trip Date *" value={g.date} onChange={v => setG({ ...g, date: v })} type="date" />
+                <DateInput
+                  label="Trip Date *"
+                  value={g.date}
+                  onChange={v => setG({ ...g, date: v })}
+                />
                 <div className="form-field">
                   <label className="form-label">Car</label>
                   <select className="form-select" value={g.carId} onChange={e => setG({ ...g, carId: e.target.value })}>
